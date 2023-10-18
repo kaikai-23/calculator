@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
 			{
 				printf("無効な入力です。もう一度やり直してください\n");
 				printf("\n");
+				//aaaなどは%d型に適応していないので無視されて\nが認識される。
+				//そのためbuffer_clearはここで必要ない
 				// clear_buffer();
 				continue; // スキップしてループに戻る(メニューに戻る)
 			}
@@ -59,6 +61,7 @@ int main(int argc, char *argv[])
 				printf("\n");
 				break;
 			}
+
 		}
 	}
 	return 0;
@@ -72,28 +75,9 @@ void print_menu(void)
 	printf("0. 終了\n");
 	printf("選択してください (0 - 1): ");
 }
+
 //バッファクリア
-// void clear_buffer(void)
-// {
-//     while (getchar() != '\n');
-// }
-
-//aaaなどのケースにも対応した更新版バッファクリア
-// void clear_buffer(void) {
-//     int c;
-// 	c = getchar();//cのASCIIを取得
-// 	while (c != '\n' && c != EOF)//改行かstdinの最終を表すEOF(End Of File)に到達してるかチェック
-// 	{
-// 		c = getchar();
-// 	}
-// }
-
-//最低でも一回はdoするwhile関数を使用する
 void clear_buffer(void)
 {
-	int c;
-	do
-	{
-		c = getchar();
-	} while (c != '\n' && c != EOF);
+    while (getchar() != '\n');
 }
