@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#define BUFFER_SIZE 100
+#include "main.h"
 
 void print_menu(void);
-void clear_buffer(void);
 
 int main(int argc, char *argv[])
 {
@@ -46,7 +43,8 @@ int main(int argc, char *argv[])
 			{
 			case 1:
 				//四則演算パートへ
-				printf("%c\n", 'A');
+				if (basic_calculator() == -1)
+					return 1;
 				break;
 			case 2:
 				//他の機能
